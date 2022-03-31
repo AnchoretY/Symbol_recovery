@@ -1,0 +1,341 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>原始字节编码 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="disassembled_instruction_manual.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../base/">
+            
+                <a href="../base/">
+            
+                    
+                    二进制基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../base/complie.html">
+            
+                <a href="../base/complie.html">
+            
+                    
+                    编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../base/symbol_table.html">
+            
+                <a href="../base/symbol_table.html">
+            
+                    
+                    符号表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    编码
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="raw_byte.html">
+            
+                <a href="raw_byte.html">
+            
+                    
+                    原始字节编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="disassembled_instruction_manual.html">
+            
+                <a href="disassembled_instruction_manual.html">
+            
+                    
+                    反汇编指令的人工编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="learning-base.html">
+            
+                <a href="learning-base.html">
+            
+                    
+                    基于学习的编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >原始字节编码</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x539F;&#x59CB;&#x5B57;&#x8282;&#x7F16;&#x7801;">&#x539F;&#x59CB;&#x5B57;&#x8282;&#x7F16;&#x7801;</h1>
+<p>&#x6700;&#x7B80;&#x5355;&#x7684;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#x662F;&#x5728;&#x539F;&#x59CB;&#x7684;&#x5B57;&#x8282;&#x7801;&#x4E0A;&#x5E94;&#x7528;&#x7F16;&#x7801;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x7F16;&#x7801;&#x540E;&#x7684;&#x7ED3;&#x679C;&#x8F93;&#x5165;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x3002;</p>
+<p><strong>&#x4EE3;&#x8868;&#x65B9;&#x5F0F;</strong>&#xFF1A;One-hot encoding&#xFF08;&#x5C06;&#x6BCF;&#x4E2A;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;256&#x7EF4;&#x5411;&#x91CF;,&#x8FD9;&#x4E9B;&#x7EF4;&#x5EA6;&#x4E4B;&#x4E00;&#x662F;1&#xFF0C;&#x5176;&#x4ED6;&#x7EF4;&#x5EA6;&#x90FD;&#x662F;0&#xFF09;</p>
+<p><strong>&#x4F18;&#x70B9;</strong>&#xFF1A;&#x7B80;&#x5355;</p>
+<p><strong>&#x7F3A;&#x70B9;</strong>&#xFF1A;&#x4E0D;&#x5305;&#x542B;&#x4EFB;&#x4F55;&#x8BED;&#x4E49;&#x4FE1;&#x606F;</p>
+<h3 id="&#x76F8;&#x5173;&#x7814;&#x7A76;">&#x76F8;&#x5173;&#x7814;&#x7A76;</h3>
+<h5 id="malconv">MalConv</h5>
+<h5 id="deepvsa">DeepVSA</h5>
+<p>&#x200B;    &#x8FDE;&#x63A5;&#x5C5E;&#x4E8E;&#x6307;&#x4EE4;&#x7684;&#x6240;&#x6709;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x7EC4;&#x5408;&#x6210;&#x4E3A;&#x6307;&#x4EE4;&#x7684;&#x7F16;&#x7801;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 编码">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="disassembled_instruction_manual.html" class="navigation navigation-next " aria-label="Next page: 反汇编指令的人工编码">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"原始字节编码","level":"1.3.1","depth":2,"next":{"title":"反汇编指令的人工编码","level":"1.3.2","depth":2,"path":"embedding/disassembled_instruction_manual.md","ref":"./embedding/disassembled_instruction_manual.md","articles":[]},"previous":{"title":"编码","level":"1.3","depth":1,"path":"embedding/README.md","ref":"./embedding/README.md","articles":[{"title":"原始字节编码","level":"1.3.1","depth":2,"path":"embedding/raw_byte.md","ref":"./embedding/raw_byte.md","articles":[]},{"title":"反汇编指令的人工编码","level":"1.3.2","depth":2,"path":"embedding/disassembled_instruction_manual.md","ref":"./embedding/disassembled_instruction_manual.md","articles":[]},{"title":"基于学习的编码","level":"1.3.3","depth":2,"path":"embedding/learning-base.md","ref":"./embedding/learning-base.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"embedding/raw_byte.md","mtime":"2022-03-30T04:00:17.729Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-31T06:38:11.750Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,471 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>符号表 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../embedding/" />
+    
+    
+    <link rel="prev" href="complie.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    二进制基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="complie.html">
+            
+                <a href="complie.html">
+            
+                    
+                    编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="symbol_table.html">
+            
+                <a href="symbol_table.html">
+            
+                    
+                    符号表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../embedding/">
+            
+                <a href="../embedding/">
+            
+                    
+                    编码
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../embedding/raw_byte.html">
+            
+                <a href="../embedding/raw_byte.html">
+            
+                    
+                    原始字节编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../embedding/disassembled_instruction_manual.html">
+            
+                <a href="../embedding/disassembled_instruction_manual.html">
+            
+                    
+                    反汇编指令的人工编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../embedding/learning-base.html">
+            
+                <a href="../embedding/learning-base.html">
+            
+                    
+                    基于学习的编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >符号表</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x7B26;&#x53F7;&#x8868;">&#x7B26;&#x53F7;&#x8868;</h1>
+<h4 id="&#x4EC0;&#x4E48;&#x662F;&#x7B26;&#x53F7;&#x8868;&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;&#x7B26;&#x53F7;&#x8868;&#xFF1F;</h4>
+<blockquote>
+<p>&#x5728;&#x7F16;&#x8BD1;&#x7684;&#x56DB;&#x4E2A;&#x9636;&#x6BB5;&#x4E2D;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x94FE;&#x63A5;&#x7684;&#x672C;&#x8D28;&#x5C31;&#x662F;&#x5C06;&#x4E0D;&#x540C;&#x7684;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x7CC5;&#x5408;&#x5230;&#x4E00;&#x5757;&#xFF0C;&#x751F;&#x6210;&#x6700;&#x7EC8;&#x53EF;&#x6267;&#x884C;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x3002;<strong>&#x800C;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x7684;&#x4E92;&#x76F8;&#x7CC5;&#x5408;&#xFF0C;&#x5B9E;&#x8D28;&#x4E0A;&#x5C31;&#x662F;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x4E4B;&#x95F4;&#x5BF9;&#x5730;&#x5740;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5C31;&#x662F;&#x5BF9;&#x51FD;&#x6570;&#x548C;&#x53D8;&#x91CF;&#x7684;&#x5730;&#x5740;&#x7684;&#x5F15;&#x7528;&#x3002;</strong>&#x90A3;&#x600E;&#x4E48;&#x6765;&#x5B8C;&#x6210;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5462;&#xFF1F;&#x4EBA;&#x4EEC;&#x5C31;&#x60F3;&#x5230;&#x4E86;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x4E2D;<strong>&#x5B58;&#x653E;&#x4E00;&#x5F20;&#x8BB0;&#x5F55;&#x4E86;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x4E2D;&#x6240;&#x7528;&#x5230;&#x7684;&#x6240;&#x6709;&#x7B26;&#x53F7;&#x4EE5;&#x53CA;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x7B26;&#x53F7;&#x503C;&#x7684;&#x8868;&#xFF0C;&#x94FE;&#x63A5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x4E4B;&#x95F4;&#x5C31;&#x4F1A;&#x4E92;&#x76F8;&#x5BFB;&#x627E;&#x81EA;&#x5DF1;&#x9700;&#x8981;&#x7684;&#x7B26;&#x53F7;&#x6765;&#x5B8C;&#x6210;&#x94FE;&#x63A5;&#x7684;&#x8FC7;&#x7A0B;</strong>&#xFF0C;&#x800C;&#x8FD9;&#x5F20;&#x8868;&#xFF0C;&#x5C31;&#x53EB;&#x505A;&#x7B26;&#x53F7;&#x8868;&#x3002;</p>
+</blockquote>
+<h4 id="&#x7B26;&#x53F7;&#x8868;&#x957F;&#x4EC0;&#x4E48;&#x6837;">&#x7B26;&#x53F7;&#x8868;&#x957F;&#x4EC0;&#x4E48;&#x6837;</h4>
+<p>&#x4E0A;&#x9762;&#x63D0;&#x5230;&#xFF0C;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#xFF0C;&#x4ECE;&#x6E90;&#x7801;&#x5230;&#x751F;&#x6210;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x6709;&#x56DB;&#x4E2A;&#x9636;&#x6BB5;&#xFF1A;&#x9884;&#x7F16;&#x8BD1;&#xFF0C;&#x7F16;&#x8BD1;&#xFF0C;&#x6C47;&#x7F16;&#xFF0C;&#x94FE;&#x63A5;&#x3002;&#x5728;&#x6C47;&#x7F16;&#x9636;&#x6BB5;&#xFF0C;&#x5373;&#x751F;&#x6210;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x4F1A;&#x4EA7;&#x751F;&#x7B26;&#x53F7;&#x8868;&#x3002;&#x6BCF;&#x4E00;&#x4E2A;&#x751F;&#x6210;&#x7684;elf&#x6587;&#x4EF6;&#x90FD;&#x6709;&#x7B26;&#x53F7;&#x8868;&#x3002;<strong>&#x7B26;&#x53F7;&#x8868;&#x4E2D;&#x7684;&#x7B26;&#x53F7;&#x548C;&#x6E90;&#x7801;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x548C;&#x51FD;&#x6570;&#x540D;&#x662F;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#x7684;</strong>&#xFF08;&#x5BF9;&#x5E94;&#x7684;&#x610F;&#x601D;&#x4E0D;&#x4EE3;&#x8868;&#x751F;&#x6210;&#x7684;&#x7B26;&#x53F7;&#x548C;&#x6E90;&#x7801;&#x4E2D;&#x7684;&#x51FD;&#x6570;&#x53D8;&#x91CF;&#x540D;&#x4E00;&#x5B9A;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x800C;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x5178;&#x578B;&#x7684;&#x662F;&#x5728;c++&#x7F16;&#x8BD1;&#x65F6;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x7B26;&#x53F7;&#x548C;&#x6E90;&#x7801;&#x7684;&#x7B26;&#x53F7;&#x662F;&#x5B8C;&#x5168;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF09;&#x3002;&#x5982;&#x4E0B;&#xFF0C;&#x6211;&#x6709;&#x4E00;&#x6BB5;&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;:</p>
+<pre><code>//test.c
+
+static int a;
+int b;
+static void test1(){
+    return;
+}
+
+void test2(){
+    return;
+}
+</code></pre><p>&#x751F;&#x6210;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x4E4B;&#x540E;&#xFF0C;&#x7528;<code>read -s test.o</code>&#x547D;&#x4EE4;&#x5373;&#x53EF;&#x67E5;&#x770B;&#x5176;&#x4E2D;&#x7684;&#x7B26;&#x53F7;&#x8868;&#xFF0C;&#x5982;&#x4E0B;:</p>
+<pre><code>haley@ubuntu:~/Desktop$ readelf -s test.o
+
+Symbol table &apos;.symtab&apos; contains 12 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS test.c
+     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
+     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    2 
+     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    3 
+     5: 0000000000000000     4 OBJECT  LOCAL  DEFAULT    3 a
+     6: 0000000000000000     7 FUNC    LOCAL  DEFAULT    1 test1
+     7: 0000000000000000     0 SECTION LOCAL  DEFAULT    5 
+     8: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 
+     9: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 
+    10: 0000000000000004     4 OBJECT  GLOBAL DEFAULT  COM b
+    11: 0000000000000007     7 FUNC    GLOBAL DEFAULT    1 test2
+</code></pre><p>&#x5176;&#x4E2D;&#xFF0C;value&#x53EB;&#x7B26;&#x53F7;&#x503C;&#xFF0C;&#x5BF9;&#x4E8E;&#x53D8;&#x91CF;&#x548C;&#x51FD;&#x6570;&#x800C;&#x8A00;&#xFF0C;&#x7B26;&#x53F7;&#x503C;&#x5C31;&#x662F;&#x4ED6;&#x4EEC;&#x7684;&#x5730;&#x5740;&#x3002;size&#x662F;&#x4E00;&#x4E2A;&#x7B26;&#x53F7;&#x503C;&#x6240;&#x5360;&#x5B57;&#x8282;&#x6570;&#xFF0C;type&#x662F;&#x7B26;&#x53F7;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x50CF;&#x53D8;&#x91CF;&#x7684;&#x7C7B;&#x578B;&#x5C31;&#x662F;OBJECT&#xFF0C;&#x51FD;&#x6570;&#x7684;&#x7C7B;&#x578B;&#x5C31;&#x662F;FUNC&#x3002;Bind&#x5217;&#x662F;&#x7B26;&#x53F7;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;LOCAL&#x8868;&#x793A;&#x662F;&#x5C40;&#x90E8;&#x7B26;&#x53F7;&#xFF0C;GLOBAL&#x8868;&#x793A;&#x662F;&#x5168;&#x5C40;&#x7B26;&#x53F7;&#xFF0C;WEAK&#x8868;&#x793A;&#x662F;&#x5F31;&#x7B26;&#x53F7;&#x7B49;&#x7B49;&#x3002;Vis&#x5217;&#x8868;&#x793A;&#x7B26;&#x53F7;&#x7684;&#x53EF;&#x89C1;&#x6027;&#xFF0C;&#x4E00;&#x822C;&#x6BD4;&#x8F83;&#x5C11;&#x7528;&#x5230;&#x3002;Ndx&#x5217;&#x8868;&#x793A;&#x7B26;&#x53F7;&#x6240;&#x5C5E;&#x7684;&#x6BB5;&#x7684;index&#xFF08;.text&#x6BB5;&#xFF0C;.data&#x6BB5;&#x7B49;&#x7B49;&#xFF09;&#x3002;Name&#x5217;&#x5C31;&#x662F;&#x521A;&#x624D;&#x8BF4;&#x7684;&#x4E0E;&#x53D8;&#x91CF;&#x51FD;&#x6570;&#x540D;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#x7684;&#x7B26;&#x53F7;&#x540D;&#x4E86;&#x3002;&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;b&#x548C;test2&#x662F;global&#x7684;&#xFF0C;&#x800C;a&#x548C;test1&#x662F;local&#x7684;&#x3002;</p>
+<p>&#x6765;&#x4E00;&#x4E2A;&#x5B9E;&#x9645;&#x7684;&#x4F8B;&#x5B50;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<pre><code>//main.c
+
+void test2();
+int main(){ 
+    test2();
+    return 0;
+}
+
+//test.c
+static int a;
+int b ;
+static void test1(){
+    return;
+}
+
+void test2(){
+    return;
+}
+</code></pre><p>&#x4E0A;&#x9762;&#x6709;&#x4E24;&#x4E2A;c&#x6E90;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x6211;&#x5206;&#x522B;&#x751F;&#x6210;&#x5BF9;&#x5E94;&#x7684;&#x76EE;&#x6807;&#x6587;&#x4EF6;main.o&#x548C;test.o,&#x5BFC;&#x51FA;&#x4ED6;&#x4EEC;&#x7684;&#x7B26;&#x53F7;&#x8868;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>//main.o&#x7684;&#x7B26;&#x53F7;&#x8868;
+
+Symbol table &apos;.symtab&apos; contains 11 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.c
+     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
+     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    3 
+     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 
+     5: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 
+     6: 0000000000000000     0 SECTION LOCAL  DEFAULT    7 
+     7: 0000000000000000     0 SECTION LOCAL  DEFAULT    5 
+     8: 0000000000000000    21 FUNC    GLOBAL DEFAULT    1 main
+     9: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND _GLOBAL_OFFSET_TABLE_
+    10: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND test2 //&#x6CE8;&#x610F;&#x8FD9;&#x91CC;&#xFF0C;Ndx&#x662F;UND&#x7684;&#xFF0C;&#x4E14;value&#x4E3A;0
+
+
+// test.o&#x7684;&#x7B26;&#x53F7;&#x8868;
+
+Symbol table &apos;.symtab&apos; contains 12 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS test.c
+     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
+     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    2 
+     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    3 
+     5: 0000000000000004     4 OBJECT  LOCAL  DEFAULT    3 a
+     6: 0000000000000000     7 FUNC    LOCAL  DEFAULT    1 test1
+     7: 0000000000000000     0 SECTION LOCAL  DEFAULT    5 
+     8: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 
+     9: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 
+    10: 0000000000000000     4 OBJECT  WEAK   DEFAULT    3 b
+    11: 0000000000000007     7 FUNC    GLOBAL DEFAULT    1 test2
+</code></pre><p>&#x4E0A;&#x9762;main.c&#x5F15;&#x7528;&#x4E86;test.c&#x7684;test2&#x51FD;&#x6570;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x94FE;&#x63A5;&#x4E4B;&#x524D;&#xFF0C;main.o&#x5E76;&#x4E0D;&#x77E5;&#x9053;test2&#x51FD;&#x6570;&#x7684;&#x5B9A;&#x4E49;&#x548C;&#x5730;&#x5740;&#xFF0C;&#x6240;&#x4EE5;main.o&#x7684;&#x7B26;&#x53F7;&#x8868;&#x91CC;&#x5C06;test2&#x6807;&#x8BB0;&#x4E3A;UND&#xFF08;undefine&#x7684;&#x610F;&#x601D;&#xFF09;&#xFF0C;&#x5730;&#x5740;&#x503C;&#x4E5F;&#x7F3A;&#x7701;&#x4E3A;0000000000000000&#xFF0C;&#x7B49;&#x5F85;&#x94FE;&#x63A5;&#x7684;&#x65F6;&#x5019;&#x5BFB;&#x627E;&#x5230;&#x5B9A;&#x4E49;&#x4E86;test2&#x51FD;&#x6570;&#x7684;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x7684;&#x7B26;&#x53F7;&#x8868;&#xFF0C;&#x63D0;&#x53D6;&#x51FA;test2&#x51FD;&#x6570;&#x7684;&#x5730;&#x5740;&#x503C;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x6765;&#x9A8C;&#x8BC1;&#x4E00;&#x4E0B;&#xFF0C;&#x7528;<code>gcc test.o main.o</code>&#x5C06;&#x5B83;&#x4EEC;&#x94FE;&#x63A5;&#x5230;&#x4E00;&#x5757;&#xFF0C;&#x751F;&#x6210;a.out&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#xFF0C;&#x5BFC;&#x51FA;a.out&#x7684;&#x7B26;&#x53F7;&#x8868;&#xFF1A;</p>
+<pre><code>//a.out&#x7684;&#x7B26;&#x53F7;&#x8868;
+
+Symbol table &apos;.dynsym&apos; contains 6 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTab
+     2: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 (2)
+     3: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+     4: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+     5: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 (2)
+
+Symbol table &apos;.symtab&apos; contains 66 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+    ......
+    31: 00000000000005f0     0 FUNC    LOCAL  DEFAULT   13 frame_dummy
+    32: 0000000000200df0     0 OBJECT  LOCAL  DEFAULT   18 __frame_dummy_init_array_
+    33: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS test.c
+    34: 0000000000201018     4 OBJECT  LOCAL  DEFAULT   23 a
+    35: 00000000000005fa     7 FUNC    LOCAL  DEFAULT   13 test1
+    36: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.c
+    37: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+    38: 0000000000000834     0 OBJECT  LOCAL  DEFAULT   17 __FRAME_END__
+    49: 0000000000201010     0 NOTYPE  GLOBAL DEFAULT   22 _edata
+    50: 0000000000000694     0 FUNC    GLOBAL DEFAULT   14 _fini
+    51: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_
+    52: 0000000000201000     0 NOTYPE  GLOBAL DEFAULT   22 __data_start
+    53: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    54: 0000000000201008     0 OBJECT  GLOBAL HIDDEN    22 __dso_handle
+    55: 00000000000006a0     4 OBJECT  GLOBAL DEFAULT   15 _IO_stdin_used
+    56: 0000000000000620   101 FUNC    GLOBAL DEFAULT   13 __libc_csu_init
+    57: 0000000000201020     0 NOTYPE  GLOBAL DEFAULT   23 _end
+    58: 00000000000004f0    43 FUNC    GLOBAL DEFAULT   13 _start
+    59: 0000000000201010     0 NOTYPE  GLOBAL DEFAULT   23 __bss_start
+    60: 0000000000000608    21 FUNC    GLOBAL DEFAULT   13 main
+    61: 0000000000000601     7 FUNC    GLOBAL DEFAULT   13 test2 //&#x91CD;&#x70B9;&#x5173;&#x6CE8;
+    62: 0000000000201010     0 OBJECT  GLOBAL HIDDEN    22 __TMC_END__
+</code></pre><p>&#x8FD9;&#x91CC;&#x770B;&#x5230;&#x6709;&#x4E24;&#x4E2A;&#x7B26;&#x53F7;&#x8868;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;<code>.dynsym</code>,&#x4E00;&#x4E2A;&#x662F;<code>.symtab</code>&#x3002;&#x8FD9;&#x91CC;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#xFF0C;<code>.dynsym</code>&#x662F;&#x52A8;&#x6001;&#x7B26;&#x53F7;&#x8868;&#xFF0C;&#x662F;&#x52A8;&#x6001;&#x94FE;&#x63A5;&#x7684;&#x65F6;&#x5019;&#x7528;&#x5230;&#x7684;&#xFF0C;&#x800C;<code>.symtab</code>&#x662F;&#x9759;&#x6001;&#x7B26;&#x53F7;&#x8868;&#xFF0C;&#x9759;&#x6001;&#x94FE;&#x63A5;&#x65F6;&#x7528;&#x5230;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x53EA;&#x770B;<code>.symtab</code>&#x3002;&#x8FD9;&#x91CC;&#x770B;&#x5230;Num&#x4E3A;61&#x7684;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;test2&#x5DF2;&#x7ECF;&#x4E0D;&#x662F;UND&#x4E86;&#xFF0C;&#x800C;&#x4E14;&#x5730;&#x5740;&#x503C;&#x4E5F;&#x6709;&#x4E86;&#x662F;0000000000000601&#x3002;&#x8BF4;&#x660E;&#x94FE;&#x63A5;&#x662F;&#x6210;&#x529F;&#x7684;&#xFF01;</p>
+<p>&#x8FD9;&#x91CC;&#x63D2;&#x4E2A;&#x9898;&#x5916;&#x8BDD;,&#x5728;&#x5927;&#x578B;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x5176;&#x5B9E;&#x94FE;&#x63A5;&#x5B8C;&#x4E4B;&#x540E;&#xFF0C;&#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x94FE;&#x63A5;&#x5B8C;&#x6210;&#x4E86;&#xFF08;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x4E86;&#x91CD;&#x5B9A;&#x4F4D;&#x64CD;&#x4F5C;&#xFF09;&#xFF0C;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x4E2D;&#x7684;.symtab&#xFF0C;&#x5373;&#x9759;&#x6001;&#x7B26;&#x53F7;&#x8868;&#x5176;&#x5B9E;&#x5DF2;&#x7ECF;&#x53D8;&#x5F97;&#x53EF;&#x6709;&#x53EF;&#x65E0;&#x4E86;&#x3002;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>strip</code>&#x547D;&#x4EE4;&#x5C06;&#x9759;&#x6001;&#x7B26;&#x53F7;&#x8868;&#x7B49;&#x65E0;&#x7528;&#x5F97;&#x4FE1;&#x606F;&#x5220;&#x6389;&#xFF0C;&#x51CF;&#x5C0F;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;&#x3002;&#x4F46;&#x662F;.dynsym&#x4ECD;&#x9700;&#x4FDD;&#x7559;&#xFF0C;&#x56E0;&#x4E3A;&#x52A8;&#x6001;&#x94FE;&#x63A5;&#x662F;&#x5728;&#x88C5;&#x8F7D;&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x5B8C;&#x6210;&#x7684;&#xFF0C;&#x7B26;&#x53F7;&#x4FE1;&#x606F;&#x4E0D;&#x80FD;&#x5220;&#x9664;&#x3002;&#x8FD8;&#x6709;&#x5C31;&#x662F;&#x5343;&#x4E07;&#x4E0D;&#x8981;&#x81EA;&#x4F5C;&#x591A;&#x60C5;&#x628A;strip&#x547D;&#x4EE4;&#x4E5F;&#x7528;&#x5728;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#xFF0C;&#x56E0;&#x4E3A;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x662F;&#x8FD8;&#x6CA1;&#x94FE;&#x63A5;&#x7684;&#xFF0C;&#x8FC7;&#x65E9;&#x5220;&#x9664;&#x7B26;&#x53F7;&#x8868;&#x4F1A;&#x5BFC;&#x81F4;&#x94FE;&#x63A5;&#x4E0D;&#x4E86;&#x3002;</p>
+<h3 id="strip">Strip</h3>
+<h4 id="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x7528;strip&#x53BB;&#x7B26;&#x53F7;&#xFF1F;strip&#x53BB;&#x7B26;&#x53F7;&#x53BB;&#x4E86;&#x4EC0;&#x4E48;&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x7528;strip&#x53BB;&#x7B26;&#x53F7;&#xFF1F;strip&#x53BB;&#x7B26;&#x53F7;&#x53BB;&#x4E86;&#x4EC0;&#x4E48;&#xFF1F;</h4>
+<blockquote>
+<p>&#x7B26;&#x53F7;&#x8868;&#x7684;&#x4E3B;&#x8981;&#x4F5C;&#x7528;&#x5728;&#x4E8E;&#x94FE;&#x63A5;&#x65F6;&#x6309;&#x7740;&#x7B26;&#x53F7;&#x5BFB;&#x5740;&#xFF0C;&#x4F46;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x5C31;&#x6CA1;&#x6709;&#x4F5C;&#x7528;&#x4E86;&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x4E2A;&#x8868;&#x5373;&#x4F7F;&#x53BB;&#x6389;&#x540E;&#x4E5F;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x7A0B;&#x5E8F;&#x7684;&#x8FD0;&#x884C;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x662F;&#x52A8;&#x6001;&#x94FE;&#x63A5;&#x51FD;&#x6570;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x8FDB;&#x884C;&#x52A8;&#x6001;&#x94FE;&#x63A5;.</p>
+<p><strong><em>&#x6240;&#x4EE5;ELF&#x6587;&#x4EF6;&#x91CC;&#x6709;&#x4E24;&#x5F20;&#x7B26;&#x53F7;&#x8868;&#xFF0C;&#x4E00;&#x5F20;&#x53EB;&#x7B26;&#x53F7;&#x8868;&#xFF08;.symtab&#xFF09;&#xFF0C;&#x53E6;&#x4E00;&#x5F20;&#x53EB;&#x52A8;&#x6001;&#x7B26;&#x53F7;&#x8868;(.dynsym)&#x3002;&#x5F53;&#x53BB;&#x7B26;&#x53F7;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EA;&#x7528;&#x53BB;&#x6389;&#x7B26;&#x53F7;&#x8868;&#xFF0C;&#x800C;&#x4FDD;&#x7559;&#x52A8;&#x6001;&#x7B26;&#x53F7;&#x8868;</em></strong></p>
+</blockquote>
+<p>&#x3010;&#x53C2;&#x8003;&#x6587;&#x732E;&#x3011;</p>
+<ul>
+<li><a href="https://huhaipeng.top/2019/09/15/&#x7B26;&#x53F7;&#x8868;&#x7684;&#x4E00;&#x4E9B;&#x4E8B;&#x4E00;&#x4E9B;&#x60C5;/" target="_blank">&#x7B26;&#x53F7;&#x8868;&#x7684;&#x4E00;&#x4E9B;&#x4E8B;&#x4E00;&#x4E9B;&#x60C5;</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="complie.html" class="navigation navigation-prev " aria-label="Previous page: 编译">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../embedding/" class="navigation navigation-next " aria-label="Next page: 编码">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"符号表","level":"1.2.2","depth":2,"next":{"title":"编码","level":"1.3","depth":1,"path":"embedding/README.md","ref":"./embedding/README.md","articles":[{"title":"原始字节编码","level":"1.3.1","depth":2,"path":"embedding/raw_byte.md","ref":"./embedding/raw_byte.md","articles":[]},{"title":"反汇编指令的人工编码","level":"1.3.2","depth":2,"path":"embedding/disassembled_instruction_manual.md","ref":"./embedding/disassembled_instruction_manual.md","articles":[]},{"title":"基于学习的编码","level":"1.3.3","depth":2,"path":"embedding/learning-base.md","ref":"./embedding/learning-base.md","articles":[]}]},"previous":{"title":"编译","level":"1.2.1","depth":2,"path":"base/complie.md","ref":"./base/complie.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"base/symbol_table.md","mtime":"2022-03-29T08:02:51.092Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-31T06:38:11.750Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
